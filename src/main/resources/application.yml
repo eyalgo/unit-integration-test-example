@@ -1,0 +1,8 @@
+spring:
+  data:
+    cassandra:
+      keyspace-name: users_support
+      contact-points: "some-host"
+      port: 9042
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration

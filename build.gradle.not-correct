@@ -1,0 +1,59 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+
+group 'org.eyalgo'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = 'org.eyalgo.testing.example.logging.ExampleApplication'
+
+dependencies {
+    implementation(
+            'org.springframework.boot:spring-boot-starter',
+            'org.springframework.boot:spring-boot-starter-data-cassandra'
+    )
+
+    runtimeOnly(
+            'org.springframework.boot:spring-boot-devtools'
+    )
+
+    compileOnly(
+            'org.projectlombok:lombok',
+    )
+
+    testImplementation(
+            'org.springframework.boot:spring-boot-starter-test',
+            'uk.org.lidalia:slf4j-test:1.1.0'
+    )
+
+    testCompile (
+            'org.cassandraunit:cassandra-unit:3.5.0.1',
+            'org.cassandraunit:cassandra-unit-spring:3.5.0.1',
+            'org.cassandraunit:cassandra-unit-shaded:3.5.0.1'
+    )
+
+    annotationProcessor(
+            'org.projectlombok:lombok',
+    )
+}
